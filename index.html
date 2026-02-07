@@ -3,191 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RAMGER | Software Solutions</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <title>RAMGER | GAME_OVER_LAG</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-bg: #f8f8f8;
-            --secondary-bg: #ffffff;
-            --text-dark: #333333;
-            --text-light: #666666;
-            --accent-blue: #34D1F7; /* Tu color RAMGER */
-            --border-color: #e0e0e0;
+            --dark-blue-bg: #030a10; /* Fondo azul oscuro profundo */
+            --light-blue-neon: #00e6ff; /* Azul cian neón para el texto */
+            --gray-text: #8899aa;
+            --border-glow: rgba(0, 230, 255, 0.4);
+            --gradient-title: linear-gradient(45deg, #00e6ff, #00aaff);
         }
 
         body {
-            font-family: 'Roboto', sans-serif;
-            background-color: var(--primary-bg);
-            color: var(--text-dark);
             margin: 0;
+            font-family: 'Share Tech Mono', monospace; /* Estilo de consola/código */
+            background-color: var(--dark-blue-bg);
+            color: var(--gray-text);
             line-height: 1.6;
             display: flex;
             flex-direction: column;
             min-height: 100vh;
+            overflow-x: hidden; /* Evita barras de desplazamiento horizontales */
+            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8" fill="rgba(0,230,255,0.7)" stroke="white" stroke-width="1.5"/></svg>') 12 12, auto; /* Cursor tipo mirilla */
         }
 
-        .container {
-            max-width: 960px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-
-        /* Header Profesional */
-        header {
-            background-color: var(--secondary-bg);
-            border-bottom: 1px solid var(--border-color);
-            padding: 20px 0;
-            text-align: center;
-        }
-
-        .logo-text {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: var(--text-dark);
-            margin: 0;
-            line-height: 1;
-        }
-
-        .logo-text span {
-            color: var(--accent-blue);
-        }
-
-        .tagline {
-            font-size: 1.1rem;
-            color: var(--text-light);
-            margin-top: 5px;
-            font-weight: 300;
-        }
-
-        /* Sección de Contenido Principal */
-        .hero-section {
-            text-align: center;
-            padding: 60px 20px;
-            background-color: var(--secondary-bg);
-            margin-top: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-        }
-
-        .hero-section h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.2rem;
-            color: var(--text-dark);
-            margin-bottom: 20px;
-        }
-
-        .hero-section p {
-            font-size: 1.05rem;
-            color: var(--text-light);
-            max-width: 700px;
-            margin: 0 auto 30px auto;
-        }
-
-        .call-to-action {
-            display: inline-block;
-            background-color: var(--accent-blue);
-            color: #ffffff;
-            padding: 12px 30px;
-            border-radius: 5px;
-            text-decoration: none;
-            font-weight: 700;
-            transition: background-color 0.3s ease;
-        }
-
-        .call-to-action:hover {
-            background-color: #2ab2d1; /* Un azul ligeramente más oscuro al pasar el ratón */
-        }
-
-        /* Secciones de Servicios / Pilares */
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
-            padding: 40px 0;
-        }
-
-        .feature-card {
-            background-color: var(--secondary-bg);
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-            text-align: center;
-            border-top: 3px solid var(--accent-blue); /* Borde acentuado */
-        }
-
-        .feature-card h3 {
-            font-family: 'Roboto', sans-serif;
-            font-size: 1.5rem;
-            color: var(--text-dark);
-            margin-top: 15px;
-            margin-bottom: 10px;
-        }
-
-        .feature-card p {
-            font-size: 0.95rem;
-            color: var(--text-light);
-        }
-
-        /* Footer */
-        footer {
-            background-color: var(--text-dark);
-            color: #ffffff;
-            padding: 30px 0;
-            text-align: center;
-            font-size: 0.9rem;
-            margin-top: auto; /* Empuja el footer hacia abajo */
-        }
-
-        footer .container {
-            border-top: 1px solid #444444;
-            padding-top: 20px;
-        }
-
-        @media (max-width: 768px) {
-            .logo-text { font-size: 2rem; }
-            .hero-section h2 { font-size: 1.8rem; }
-            .features-grid { grid-template-columns: 1fr; }
-        }
-    </style>
-</head>
-<body>
-
-    <header>
-        <div class="container">
-            <h1 class="logo-text">RAM<span>GER</span></h1>
-            <p class="tagline">Software Solutions | Excelencia en Optimización de Sistemas</p>
-        </div>
-    </header>
-
-    <main class="container">
-        <section class="hero-section">
-            <h2>Transformando el Rendimiento de tu PC</h2>
-            <p>En RAMGER, nos dedicamos a la optimización de sistemas, reviviendo equipos con bajo rendimiento y liberando su potencial oculto. Desarrollamos soluciones eficientes que garantizan velocidad, estabilidad y una experiencia de usuario superior.</p>
-            <a href="https://github.com/IsaacBorjas/Ramger" class="call-to-action">Descubre Nuestros Proyectos</a>
-        </section>
-
-        <section class="features-grid">
-            <div class="feature-card">
-                <h3>Optimización Avanzada</h3>
-                <p>Implementamos técnicas de software de vanguardia para maximizar los recursos de hardware, incluso en equipos legacy.</p>
-            </div>
-            <div class="feature-card">
-                <h3>Reducción de Latencia</h3>
-                <p>Ajustes precisos a nivel de sistema para garantizar una respuesta ultrarrápida en todas tus aplicaciones y juegos.</p>
-            </div>
-            <div class="feature-card">
-                <h3>Sistemas Limpios</h3>
-                <p>Eliminamos software innecesario, telemetría y procesos en segundo plano que comprometen tu privacidad y rendimiento.</p>
-            </div>
-        </section>
-    </main>
-
-    <footer>
-        <div class="container">
-            <p>&copy; 2026 RAMGER Software Solutions. Todos los derechos reservados.</p>
-        </div>
-    </footer>
-
-</body>
-</html>
+        /* Efecto de ruido de pantalla para fondo */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAAACCAYAAABytg0gAAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH4ggBDQod/g2jWgAAAB1pVFh0UmF3IHByb2ZpbGUgdHlwZSBpY2MgcHJvZmlsZSAAAACMtN/DA
