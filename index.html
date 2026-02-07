@@ -1,74 +1,92 @@
-<style>
-    /* Estilos para la navegación */
-    header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 20px 5%;
-        background: rgba(0, 0, 0, 0.8);
-        border-bottom: 1px solid var(--neon-blue);
-        backdrop-filter: blur(10px);
-        sticky: top;
-    }
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RAMGER | R.OS</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #020508;
+            --neon-blue: #00e6ff;
+            --text-gray: #a0aec0;
+            --glass-bg: rgba(0, 230, 255, 0.03);
+            --header-bg: rgba(0, 0, 0, 0.9);
+        }
 
-    .logo {
-        font-family: 'Orbitron', sans-serif;
-        color: white;
-        font-size: 1.5rem;
-        font-weight: 900;
-    }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-    .logo span {
-        color: var(--neon-blue);
-    }
+        html {
+            scroll-behavior: smooth;
+        }
 
-    nav {
-        display: flex;
-        align-items: center;
-        gap: 15px;
-    }
+        body {
+            background-color: var(--bg-color);
+            color: white;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
 
-    .nav-link {
-        color: white;
-        text-decoration: none;
-        font-family: 'Orbitron', sans-serif;
-        font-size: 0.75rem;
-        padding: 8px 15px;
-        transition: 0.3s;
-        border: 1px solid transparent;
-    }
+        /* --- HEADER & NAVEGACIÓN --- */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 5%;
+            background: var(--header-bg);
+            border-bottom: 1px solid rgba(0, 230, 255, 0.3);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
 
-    .nav-link:hover {
-        color: var(--neon-blue);
-        border: 1px solid var(--neon-blue);
-        box-shadow: 0 0 10px rgba(0, 230, 255, 0.2);
-    }
+        .logo {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 900;
+            letter-spacing: 2px;
+        }
 
-    /* Estilo especial para el botón de GitHub */
-    .btn-github {
-        background: var(--neon-blue);
-        color: black !important;
-        font-weight: 900;
-    }
+        .logo span {
+            color: var(--neon-blue);
+        }
 
-    /* Contenedor de Redes (Sutil) */
-    .social-icons {
-        display: flex;
-        gap: 10px;
-        margin-right: 20px;
-        border-right: 1px solid rgba(255,255,255,0.1);
-        padding-right: 20px;
-    }
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
 
-    .social-icons a {
-        color: var(--text-gray);
-        font-size: 0.7rem;
-        text-decoration: none;
-        text-transform: uppercase;
-        transition: 0.3s;
-    }
+        /* Enlaces de Redes Sociales */
+        .social-group {
+            display: flex;
+            gap: 12px;
+            margin-right: 20px;
+            padding-right: 20px;
+            border-right: 1px solid rgba(255, 255, 255, 0.1);
+        }
 
-    .social-icons a:hover {
-        color: white;
-    }
-</style>
+        .social-link {
+            color: var(--text-gray);
+            text-decoration: none;
+            font-size: 0.7rem;
+            font-family: 'Orbitron', sans-serif;
+            transition: 0.3s;
+        }
+
+        .social-link:hover {
+            color: var(--neon-blue);
+        }
+
+        /* Enlaces de Menú */
+        .nav-item {
+            color: white;
+            text-decoration: none;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.75rem;
+            padding: 8px 16px;
