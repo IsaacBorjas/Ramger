@@ -1,344 +1,74 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RAMGER | GAME_OVER_LAG</title>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --dark-blue-bg: #030a10; /* Fondo azul oscuro profundo */
-            --light-blue-neon: #00e6ff; /* Azul cian neón para el texto */
-            --gray-text: #8899aa;
-            --border-glow: rgba(0, 230, 255, 0.4);
-            --gradient-title: linear-gradient(45deg, #00e6ff, #00aaff);
-        }
+<style>
+    /* Estilos para la navegación */
+    header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px 5%;
+        background: rgba(0, 0, 0, 0.8);
+        border-bottom: 1px solid var(--neon-blue);
+        backdrop-filter: blur(10px);
+        sticky: top;
+    }
 
-        body {
-            margin: 0;
-            font-family: 'Share Tech Mono', monospace; /* Estilo de consola/código */
-            background-color: var(--dark-blue-bg);
-            color: var(--gray-text);
-            line-height: 1.6;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-            overflow-x: hidden; /* Evita barras de desplazamiento horizontales */
-            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8" fill="rgba(0,230,255,0.7)" stroke="white" stroke-width="1.5"/></svg>') 12 12, auto; /* Cursor tipo mirilla */
-        }
+    .logo {
+        font-family: 'Orbitron', sans-serif;
+        color: white;
+        font-size: 1.5rem;
+        font-weight: 900;
+    }
 
-        /* Efecto de ruido de pantalla para fondo */
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAAACCAYAAABytg0gAAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH4ggBDQod/g2jWgAAAB1pVFh0UmF3IHByb2ZpbGUgdHlwZSBpY2MgcHJvZmlsZSAAAACMtN/DAAAACXBIWXMAAA7DAAAOwwHAPgtzAAAAIXRFWHRTb2Z0d2FyZQBNYWNyb21lZGlhIEZpcmV3b3JrcyBNWCBleHBvcnQgUE5HIDIuMAwzQzMAAAAXSURBVBjTY2CgAgwMDAwMTAxMAyMAAAQDAAH2/0H4AAAAAElFTkSuQmCC') repeat;
-            opacity: 0.03; /* Muy sutil */
-            pointer-events: none;
-            z-index: -1;
-        }
+    .logo span {
+        color: var(--neon-blue);
+    }
 
-        .glitch-effect {
-            animation: glitch 2s linear infinite;
-        }
+    nav {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
 
-        @keyframes glitch {
-            0% { text-shadow: 2px 0 var(--light-blue-neon), -2px 0 red; }
-            2% { text-shadow: -2px 0 var(--light-blue-neon), 2px 0 red; }
-            4% { text-shadow: 2px 0 var(--light-blue-neon), -2px 0 red; }
-            6% { text-shadow: -2px 0 var(--light-blue-neon), 2px 0 red; }
-            8% { text-shadow: 2px 0 var(--light-blue-neon), -2px 0 red; }
-            10% { text-shadow: none; }
-            100% { text-shadow: none; }
-        }
+    .nav-link {
+        color: white;
+        text-decoration: none;
+        font-family: 'Orbitron', sans-serif;
+        font-size: 0.75rem;
+        padding: 8px 15px;
+        transition: 0.3s;
+        border: 1px solid transparent;
+    }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
+    .nav-link:hover {
+        color: var(--neon-blue);
+        border: 1px solid var(--neon-blue);
+        box-shadow: 0 0 10px rgba(0, 230, 255, 0.2);
+    }
 
-        /* Header con diseño de interfaz */
-        header {
-            background-color: #05141e; /* Un poco más claro que el fondo para contraste */
-            border-bottom: 2px solid var(--light-blue-neon);
-            box-shadow: 0 0 15px var(--border-glow);
-            padding: 20px 0;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: relative;
-            z-index: 10;
-        }
+    /* Estilo especial para el botón de GitHub */
+    .btn-github {
+        background: var(--neon-blue);
+        color: black !important;
+        font-weight: 900;
+    }
 
-        .logo-nav {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1.8rem;
-            text-decoration: none;
-            color: white;
-            font-weight: 900;
-            text-shadow: 0 0 10px var(--light-blue-neon);
-            padding-left: 30px;
-        }
+    /* Contenedor de Redes (Sutil) */
+    .social-icons {
+        display: flex;
+        gap: 10px;
+        margin-right: 20px;
+        border-right: 1px solid rgba(255,255,255,0.1);
+        padding-right: 20px;
+    }
 
-        .logo-nav span { color: var(--light-blue-neon); }
+    .social-icons a {
+        color: var(--text-gray);
+        font-size: 0.7rem;
+        text-decoration: none;
+        text-transform: uppercase;
+        transition: 0.3s;
+    }
 
-        .nav-links {
-            padding-right: 30px;
-        }
-
-        .nav-links a {
-            color: var(--gray-text);
-            text-decoration: none;
-            margin-left: 25px;
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            transition: color 0.3s, text-shadow 0.3s;
-        }
-
-        .nav-links a:hover {
-            color: var(--light-blue-neon);
-            text-shadow: 0 0 8px var(--light-blue-neon);
-        }
-
-        /* Sección Hero con "grid" de datos */
-        .hero {
-            padding: 120px 0;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-            border-bottom: 1px dashed rgba(0, 230, 255, 0.2);
-        }
-
-        .hero::before, .hero::after { /* Efectos de líneas de scan */
-            content: '';
-            position: absolute;
-            left: 0;
-            width: 100%;
-            height: 1px;
-            background: linear-gradient(to right, transparent, var(--light-blue-neon), transparent);
-            animation: scanline 8s infinite linear;
-        }
-
-        .hero::before { top: 0; }
-        .hero::after { bottom: 0; animation-delay: 4s; }
-
-        @keyframes scanline {
-            0% { opacity: 0; transform: translateY(0); }
-            50% { opacity: 0.3; transform: translateY(100vh); }
-            100% { opacity: 0; transform: translateY(200vh); }
-        }
-
-        h1 {
-            font-family: 'Orbitron', sans-serif;
-            font-size: clamp(3rem, 7vw, 5rem);
-            color: white;
-            text-transform: uppercase;
-            letter-spacing: 5px;
-            margin: 0;
-            text-shadow: 0 0 20px var(--light-blue-neon);
-            background: var(--gradient-title);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .hero p {
-            font-size: 1.1rem;
-            color: var(--light-blue-neon);
-            max-width: 800px;
-            margin: 25px auto 40px;
-            text-shadow: 0 0 5px rgba(0, 230, 255, 0.5);
-            line-height: 1.5;
-        }
-
-        .btn-action {
-            background-color: var(--light-blue-neon);
-            color: var(--dark-blue-bg);
-            padding: 15px 40px;
-            text-decoration: none;
-            font-weight: 700;
-            border: none;
-            border-radius: 2px;
-            transition: all 0.3s;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            box-shadow: 0 0 15px var(--border-glow);
-        }
-
-        .btn-action:hover {
-            background-color: white;
-            box-shadow: 0 0 25px var(--light-blue-neon);
-            transform: translateY(-2px);
-        }
-
-        /* Sección de Módulos (Distribución Única) */
-        .modules-section {
-            padding: 80px 0;
-            display: grid;
-            grid-template-columns: repeat(2, 1fr); /* Dos columnas para romper el molde */
-            gap: 50px 80px; /* Más espacio entre ellos */
-            align-items: center;
-        }
-
-        .module-item {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            position: relative;
-        }
-
-        .module-item:nth-child(even) { /* Invertir orden para el segundo y cuarto módulo */
-            text-align: right;
-            order: 1; /* Esto es clave para la distribución única */
-        }
-        .module-item:nth-child(even) .module-title::before {
-            left: unset;
-            right: 0;
-            transform: translateX(100%);
-        }
-
-        .module-item::before { /* Flecha o indicador */
-            content: '>>';
-            position: absolute;
-            left: -40px;
-            top: 10px;
-            color: var(--light-blue-neon);
-            font-size: 1.2rem;
-            opacity: 0.6;
-        }
-        .module-item:nth-child(even)::before {
-            left: unset;
-            right: -40px;
-        }
-
-        .module-title {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1.8rem;
-            color: white;
-            text-transform: uppercase;
-            position: relative;
-            padding-bottom: 10px;
-        }
-        .module-title::after { /* Línea de efecto glitch */
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 80px;
-            height: 2px;
-            background: var(--light-blue-neon);
-            box-shadow: 0 0 10px var(--border-glow);
-            animation: flicker 1.5s infinite alternate;
-        }
-        .module-item:nth-child(even) .module-title::after {
-            left: unset;
-            right: 0;
-        }
-
-        @keyframes flicker {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.7; width: 60px; }
-        }
-
-        .module-description {
-            font-size: 0.95rem;
-            color: var(--gray-text);
-            max-width: 500px;
-        }
-        .module-item:nth-child(even) .module-description {
-            margin-left: auto;
-        }
-
-        /* Footer con estilo de terminal */
-        footer {
-            background: #000000;
-            color: #556677;
-            padding: 40px 0;
-            text-align: center;
-            font-size: 0.8rem;
-            margin-top: auto;
-            border-top: 1px dashed rgba(0, 230, 255, 0.1);
-            box-shadow: 0 0 10px rgba(0, 230, 255, 0.1);
-        }
-
-        @media (max-width: 900px) {
-            .modules-section {
-                grid-template-columns: 1fr;
-                gap: 40px;
-            }
-            .module-item:nth-child(even) { /* Restaurar orden y alineación */
-                text-align: left;
-                order: unset;
-            }
-            .module-item::before, .module-item:nth-child(even)::before {
-                left: -20px;
-                right: unset;
-            }
-            .module-title::after, .module-item:nth-child(even) .module-title::after {
-                left: 0;
-                right: unset;
-            }
-            .module-item:nth-child(even) .module-description {
-                margin-left: 0;
-            }
-            .logo-nav, .nav-links a { padding: 0 15px; }
-        }
-        @media (max-width: 500px) {
-            .logo-nav { font-size: 1.5rem; padding-left: 15px; }
-            .nav-links { display: none; } /* Ocultar menú en móviles pequeños */
-            h1 { font-size: 2.5rem; letter-spacing: 2px; }
-            .hero p { font-size: 1rem; }
-        }
-    </style>
-</head>
-<body>
-
-    <header>
-        <a href="#" class="logo-nav glitch-effect">RAM<span>GER</span></a>
-        <nav class="nav-links">
-            <a href="#about">ACERCA</a>
-            <a href="#modules">MODULOS</a>
-            <a href="https://github.com/IsaacBorjas/Ramger">GITHUB</a>
-        </nav>
-    </header>
-
-    <section class="hero">
-        <div class="container">
-            <h1 class="glitch-effect">RAMGER.OS</h1>
-            <p>// OPTIMIZACIÓN EXTREMA // LATENCIA CERO // RENDIMIENTO PURA</p>
-            <a href="https://github.com/IsaacBorjas/Ramger" class="btn-action">ACCESO AL PLAYBOOK</a>
-        </div>
-    </section>
-
-    <div class="container" id="modules">
-        <section class="modules-section">
-            <div class="module-item">
-                <h2 class="module-title">KERNEL_TWEAKS</h2>
-                <p class="module-description">Reconfiguración a bajo nivel del núcleo de Windows para eliminar bottlenecks y priorizar la ejecución crítica.</p>
-            </div>
-            <div class="module-item">
-                <h2 class="module-title">DEBLOAT_SYSTEM</h2>
-                <p class="module-description">Remoción quirúrgica de software preinstalado, telemetría y servicios en segundo plano que ralentizan tu sistema.</p>
-            </div>
-            <div class="module-item">
-                <h2 class="module-title">INPUT_LAG_ZERO</h2>
-                <p class="module-description">Ajustes directos a la cadena de entrada para una respuesta instantánea del ratón, teclado y otros periféricos.</p>
-            </div>
-            <div class="module-item">
-                <h2 class="module-title">FPS_BOOST_CORE</h2>
-                <p class="module-description">Optimización de memoria y CPU para garantizar cuadros por segundo estables y maximizar la experiencia de juego.</p>
-            </div>
-        </section>
-    </div>
-
-    <footer>
-        <div class="container">
-            <p>[SYSTEM_LOG] &copy; 2026 RAMGER Software Solutions. // ALL RIGHTS RESERVED // END_TRANSMISSION</p>
-        </div>
-    </footer>
-
-</body>
-</html>
+    .social-icons a:hover {
+        color: white;
+    }
+</style>
