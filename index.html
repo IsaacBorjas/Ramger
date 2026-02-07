@@ -11,144 +11,168 @@
             --light-blue-neon: #00e6ff;
             --gray-text: #8899aa;
             --border-glow: rgba(0, 230, 255, 0.4);
+            --gradient-title: linear-gradient(45deg, #00e6ff, #00aaff);
         }
 
-        /* --- LÓGICA DE NAVEGACIÓN --- */
+        /* --- LÓGICA DE NAVEGACIÓN (SPA) --- */
         #historia-page { display: none; }
         body:has(#about:target) #home-content { display: none; }
-        body:has(#about:target) #historia-page { display: block; animation: scanFade 0.4s ease-out; }
-
-        @keyframes scanFade {
-            from { opacity: 0; filter: brightness(2); }
-            to { opacity: 1; filter: brightness(1); }
-        }
+        body:has(#about:target) #historia-page { display: block; }
 
         body {
             margin: 0;
             font-family: 'Share Tech Mono', monospace;
             background-color: var(--dark-blue-bg);
             color: var(--gray-text);
-            min-height: 100vh;
+            line-height: 1.6;
             display: flex;
             flex-direction: column;
+            min-height: 100vh;
+            overflow-x: hidden;
+            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8" fill="rgba(0,230,255,0.7)" stroke="white" stroke-width="1.5"/></svg>') 12 12, auto;
         }
 
-        /* --- HEADER --- */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAAACCAYAAABytg0gAAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH4ggBDQod/g2jWgAAAB1pVFh0UmF3IHByb2ZpbGUgdHlwZSBpY2MgcHJvZmlsZSAAAACMtN/DAAAACXBIWXMAAA7DAAAOwwHAPgtzAAAAIXRFWHRTb2Z0d2FyZQBNYWNyb21lZGlhIEZpcmV3b3JrcyBNWCBleHBvcnQgUE5HIDIuMAwzQzMAAAAXSURBVBjTY2CgAgwMDAwMTAxMAyMAAAQDAAH2/0H4AAAAAElFTkSuQmCC') repeat;
+            opacity: 0.03;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .glitch-effect { animation: glitch 2s linear infinite; }
+        @keyframes glitch {
+            0% { text-shadow: 2px 0 var(--light-blue-neon), -2px 0 red; }
+            2% { text-shadow: -2px 0 var(--light-blue-neon), 2px 0 red; }
+            10% { text-shadow: none; }
+            100% { text-shadow: none; }
+        }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+
         header {
             background-color: #05141e;
             border-bottom: 2px solid var(--light-blue-neon);
             box-shadow: 0 0 15px var(--border-glow);
-            padding: 15px 5%;
+            padding: 20px 0;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            position: sticky;
-            top: 0;
-            z-index: 100;
+            position: relative;
+            z-index: 10;
         }
 
-        .logo {
+        .logo-nav {
             font-family: 'Orbitron', sans-serif;
-            font-size: 1.6rem;
+            font-size: 1.8rem;
             text-decoration: none;
             color: white;
             font-weight: 900;
+            text-shadow: 0 0 10px var(--light-blue-neon);
+            padding-left: 30px;
         }
-        .logo span { color: var(--light-blue-neon); }
+        .logo-nav span { color: var(--light-blue-neon); }
 
-        nav { display: flex; align-items: center; gap: 15px; }
-
-        .social-links {
-            display: flex;
-            gap: 12px;
-            border-right: 1px solid rgba(255,255,255,0.1);
-            padding-right: 15px;
-        }
-        .social-link {
-            color: var(--light-blue-neon);
+        .nav-links { padding-right: 30px; display: flex; align-items: center; }
+        .nav-links a {
+            color: var(--gray-text);
             text-decoration: none;
-            font-size: 0.7rem;
-            transition: 0.3s;
-        }
-        .social-link:hover { text-shadow: 0 0 8px var(--light-blue-neon); color: white; }
-
-        .nav-btn {
-            color: white;
-            text-decoration: none;
+            margin-left: 20px;
             font-size: 0.8rem;
-            font-family: 'Orbitron', sans-serif;
+            text-transform: uppercase;
             transition: 0.3s;
         }
-        .nav-btn:hover { color: var(--light-blue-neon); }
+        .nav-links a:hover { color: var(--light-blue-neon); text-shadow: 0 0 8px var(--light-blue-neon); }
 
-        .btn-highlight {
-            background: var(--light-blue-neon);
-            color: black !important;
-            font-weight: bold;
-            padding: 5px 10px;
-            border-radius: 2px;
+        /* Estilo Redes Sociales en el Nav */
+        .nav-socials { display: flex; gap: 15px; margin-right: 20px; border-right: 1px solid rgba(255,255,255,0.1); padding-right: 20px; }
+        .nav-socials a { margin-left: 0; color: var(--light-blue-neon); font-size: 0.7rem; }
+
+        .hero {
+            padding: 120px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            border-bottom: 1px dashed rgba(0, 230, 255, 0.2);
         }
 
-        /* --- CONTENIDO --- */
-        .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
-
-        .hero { padding: 100px 0; text-align: center; }
-        .hero h1 {
+        h1 {
             font-family: 'Orbitron', sans-serif;
-            font-size: clamp(2.5rem, 8vw, 5rem);
+            font-size: clamp(3rem, 7vw, 5rem);
             color: white;
-            text-shadow: 0 0 20px var(--light-blue-neon);
+            text-transform: uppercase;
+            letter-spacing: 5px;
             margin: 0;
+            text-shadow: 0 0 20px var(--light-blue-neon);
+            background: var(--gradient-title);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
-        .hero p { color: var(--light-blue-neon); letter-spacing: 4px; margin: 20px 0; }
 
-        .modules-grid {
+        .hero p {
+            font-size: 1.1rem;
+            color: var(--light-blue-neon);
+            max-width: 800px;
+            margin: 25px auto 40px;
+            text-shadow: 0 0 5px rgba(0, 230, 255, 0.5);
+        }
+
+        .btn-action {
+            background-color: var(--light-blue-neon);
+            color: var(--dark-blue-bg);
+            padding: 15px 40px;
+            text-decoration: none;
+            font-weight: 700;
+            border-radius: 2px;
+            transition: 0.3s;
+            text-transform: uppercase;
+            box-shadow: 0 0 15px var(--border-glow);
+        }
+
+        .modules-section {
+            padding: 80px 0;
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            padding: 40px 0;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 50px 80px;
+            align-items: center;
         }
-        .module-card h3 {
-            color: white;
-            font-family: 'Orbitron';
-            border-bottom: 2px solid var(--light-blue-neon);
-            display: inline-block;
-            margin-bottom: 15px;
-        }
+
+        .module-item { display: flex; flex-direction: column; gap: 15px; position: relative; }
+        .module-item:nth-child(even) { text-align: right; order: 1; }
+        .module-item::before { content: '>>'; position: absolute; left: -40px; top: 10px; color: var(--light-blue-neon); opacity: 0.6; }
+        .module-item:nth-child(even)::before { left: unset; right: -40px; }
+
+        .module-title { font-family: 'Orbitron', sans-serif; font-size: 1.8rem; color: white; text-transform: uppercase; position: relative; padding-bottom: 10px; }
+        .module-title::after { content: ''; position: absolute; bottom: 0; left: 0; width: 80px; height: 2px; background: var(--light-blue-neon); }
+        .module-item:nth-child(even) .module-title::after { left: unset; right: 0; }
 
         /* --- SECCIÓN HISTORIA --- */
-        .story-section { padding: 80px 0; max-width: 800px; margin: 0 auto; }
-        .terminal-card {
-            background: rgba(0, 230, 255, 0.03);
-            border: 1px solid var(--light-blue-neon);
-            padding: 40px;
-            position: relative;
+        .story-box {
+            padding: 100px 20px;
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
         }
-        .terminal-card::before {
-            content: "RAMGER_ORIGIN.LOG";
-            position: absolute;
-            top: -12px;
-            left: 20px;
-            background: var(--light-blue-neon);
-            color: black;
-            padding: 2px 10px;
-            font-weight: bold;
-            font-size: 0.7rem;
-        }
-        .highlight { color: var(--light-blue-neon); font-weight: bold; }
+        .story-box h2 { font-family: 'Orbitron'; color: white; font-size: 2.5rem; margin-bottom: 30px; }
+        .story-text { border: 1px solid var(--light-blue-neon); padding: 40px; background: rgba(0, 230, 255, 0.02); }
+        .highlight { color: var(--light-blue-neon); }
 
         footer {
+            background: #000000;
+            color: #556677;
+            padding: 40px 0;
             text-align: center;
-            padding: 40px;
-            font-size: 0.7rem;
-            border-top: 1px dashed rgba(0, 230, 255, 0.1);
+            font-size: 0.8rem;
             margin-top: auto;
+            border-top: 1px dashed rgba(0, 230, 255, 0.1);
         }
 
-        @media (max-width: 768px) {
-            .modules-grid { grid-template-columns: 1fr; }
-            header { flex-direction: column; gap: 15px; }
-            .social-links { border: none; padding: 0; }
+        @media (max-width: 900px) {
+            .modules-section { grid-template-columns: 1fr; }
+            .module-item:nth-child(even) { text-align: left; }
+            .nav-socials { display: none; }
         }
     </style>
 </head>
@@ -157,68 +181,67 @@
     <div id="about" style="position: absolute; top: 0;"></div>
 
     <header>
-        <a href="index.html" class="logo">RAM<span>GER</span></a>
-        
-        <nav>
-            <div class="social-links">
-                <a href="https://discord.com/channels/1469783742762455114/1469783744163610699" class="social-link" target="_blank">DISCORD</a>
-                <a href="#" class="social-link">INSTAGRAM</a>
-                <a href="#" class="social-link">TIKTOK</a>
+        <a href="index.html" class="logo-nav glitch-effect">RAM<span>GER</span></a>
+        <nav class="nav-links">
+            <div class="nav-socials">
+                <a href="https://discord.com/channels/1469783742762455114/1469783744163610699" target="_blank">DISCORD</a>
+                <a href="#">TIKTOK</a>
+                <a href="#">INSTAGRAM</a>
             </div>
-            
-            <a href="#about" class="nav-btn">ACERCA</a>
-            <a href="index.html" class="nav-btn">MODULOS</a>
-            <a href="https://github.com/IsaacBorjas/Ramger" class="nav-btn btn-highlight" target="_blank">GITHUB</a>
+            <a href="#about">ACERCA</a>
+            <a href="index.html">MODULOS</a>
+            <a href="https://github.com/IsaacBorjas/Ramger">GITHUB</a>
         </nav>
     </header>
 
     <main id="home-content">
         <section class="hero">
             <div class="container">
-                <h1>RAMGER.OS</h1>
-                <p>// OPTIMIZACIÓN EXTREMA // TODO GRATIS //</p>
+                <h1 class="glitch-effect">RAMGER.OS</h1>
+                <p>// OPTIMIZACIÓN EXTREMA // LATENCIA CERO // RENDIMIENTO PURA</p>
+                <a href="https://github.com/IsaacBorjas/Ramger" class="btn-action">ACCESO AL PLAYBOOK</a>
             </div>
         </section>
 
         <div class="container">
-            <div class="modules-grid">
-                <div class="module-card">
-                    <h3>KERNEL_TWEAKS</h3>
-                    <p>Reconfiguración del núcleo para eliminar lag.</p>
+            <section class="modules-section">
+                <div class="module-item">
+                    <h2 class="module-title">KERNEL_TWEAKS</h2>
+                    <p class="module-description">Reconfiguración a bajo nivel del núcleo de Windows para eliminar bottlenecks y priorizar la ejecución crítica.</p>
                 </div>
-                <div class="module-card">
-                    <h3>INPUT_LAG_ZERO</h3>
-                    <p>Respuesta instantánea de teclado y mouse.</p>
+                <div class="module-item">
+                    <h2 class="module-title">DEBLOAT_SYSTEM</h2>
+                    <p class="module-description">Remoción quirúrgica de software preinstalado, telemetría y servicios en segundo plano.</p>
                 </div>
-                <div class="module-card">
-                    <h3>DEBLOAT_SYSTEM</h3>
-                    <p>Remoción de servicios basura de Windows.</p>
+                <div class="module-item">
+                    <h2 class="module-title">INPUT_LAG_ZERO</h2>
+                    <p class="module-description">Ajustes directos a la cadena de entrada para una respuesta instantánea del ratón y teclado.</p>
                 </div>
-                <div class="module-card">
-                    <h3>FPS_BOOST</h3>
-                    <p>Máximos cuadros por segundo garantizados.</p>
-                </div>
-            </div>
-        </div>
-    </main>
-
-    <main id="historia-page">
-        <div class="container">
-            <section class="story-section">
-                <div class="terminal-card">
-                    <h2 style="font-family:'Orbitron'; color:white;">Mi Historia</h2>
-                    <p>Yo sé lo que es trabajar con <span class="highlight">recursos limitados</span> y sentir que el hardware te frena. Ver cómo el sistema se ralentiza mientras intentas dar lo mejor de ti es un desafío que muchos enfrentamos.</p>
-                    <p>Por eso, decidí que <span class="highlight">RAMGER R.OS</span> sería siempre gratis. Mi misión es demostrar que con optimización inteligente, cualquier equipo puede alcanzar su <span class="highlight">máximo potencial</span> y ofrecer una experiencia fluida.</p>
-                    <p>Este proyecto es mi forma de apoyar a la comunidad para que nadie se quede atrás. <span class="highlight">RENDIMIENTO SIN LÍMITES.</span></p>
-                    <br>
-                    <a href="index.html" style="color: var(--light-blue-neon); text-decoration: none;">[ VOLVER_AL_INICIO ]</a>
+                <div class="module-item">
+                    <h2 class="module-title">FPS_BOOST_CORE</h2>
+                    <p class="module-description">Optimización de memoria y CPU para garantizar cuadros por segundo estables.</p>
                 </div>
             </section>
         </div>
     </main>
 
+    <main id="historia-page">
+        <div class="story-box">
+            <h2>ORIGIN_LOG</h2>
+            <div class="story-text">
+                <p>Yo sé lo que es trabajar con <span class="highlight">recursos limitados</span> y sentir que el sistema te frena. Ver cómo el lag interrumpe tu esfuerzo es algo que nadie debería pasar.</p>
+                <p>Por eso, decidí que <span class="highlight">RAMGER R.OS</span> sería siempre gratis. Mi misión es demostrar que con optimización inteligente, cualquier equipo puede alcanzar su <span class="highlight">máximo potencial</span>.</p>
+                <p>Este proyecto está hecho para que nadie se quede atrás. <span class="highlight">GAME OVER AL LAG.</span></p>
+                <br>
+                <a href="index.html" style="color: var(--light-blue-neon); text-decoration: none;">[ VOLVER_AL_INICIO ]</a>
+            </div>
+        </div>
+    </main>
+
     <footer>
-        <p>[SYSTEM_LOG] &copy; 2026 RAMGER | R.OS // END_TRANSMISSION</p>
+        <div class="container">
+            <p>[SYSTEM_LOG] &copy; 2026 RAMGER | R.OS. // ALL RIGHTS RESERVED // END_TRANSMISSION</p>
+        </div>
     </footer>
 
 </body>
