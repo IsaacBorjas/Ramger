@@ -29,6 +29,7 @@
             color: white;
             font-family: 'Inter', sans-serif;
             overflow-x: hidden;
+            line-height: 1.6;
         }
 
         /* --- HEADER & NAVEGACIÓN --- */
@@ -62,7 +63,7 @@
             gap: 10px;
         }
 
-        /* Enlaces de Redes Sociales */
+        /* Grupo de Redes Sociales */
         .social-group {
             display: flex;
             gap: 12px;
@@ -77,16 +78,171 @@
             font-size: 0.7rem;
             font-family: 'Orbitron', sans-serif;
             transition: 0.3s;
+            letter-spacing: 1px;
         }
 
         .social-link:hover {
             color: var(--neon-blue);
+            text-shadow: 0 0 8px var(--neon-blue);
         }
 
-        /* Enlaces de Menú */
+        /* Enlaces de Menú Principal */
         .nav-item {
             color: white;
             text-decoration: none;
             font-family: 'Orbitron', sans-serif;
             font-size: 0.75rem;
             padding: 8px 16px;
+            transition: 0.3s;
+            border: 1px solid transparent;
+        }
+
+        .nav-item:hover {
+            color: var(--neon-blue);
+            border: 1px solid var(--neon-blue);
+        }
+
+        /* Botón de GitHub destacado */
+        .btn-github {
+            background: var(--neon-blue);
+            color: black !important;
+            font-weight: 900;
+            border-radius: 4px;
+        }
+
+        /* --- SECCIÓN HERO --- */
+        .hero {
+            height: 70vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: radial-gradient(circle at center, rgba(0, 230, 255, 0.05) 0%, transparent 70%);
+        }
+
+        .hero h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 5rem;
+            margin-bottom: 10px;
+            color: white;
+            text-shadow: 0 0 30px rgba(0, 230, 255, 0.4);
+        }
+
+        .hero p {
+            letter-spacing: 8px;
+            color: var(--neon-blue);
+            font-weight: bold;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+        }
+
+        /* --- SECCIÓN ACERCA DE (TU HISTORIA) --- */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 80px 20px;
+        }
+
+        .about-card {
+            background: var(--glass-bg);
+            border: 1px solid rgba(0, 230, 255, 0.1);
+            padding: 50px;
+            border-radius: 20px;
+            position: relative;
+        }
+
+        .about-card::after {
+            content: "R.OS ORIGEN";
+            position: absolute;
+            top: -12px;
+            left: 40px;
+            background: var(--neon-blue);
+            color: black;
+            padding: 2px 12px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.7rem;
+            font-weight: 900;
+        }
+
+        .about-card h2 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2rem;
+            margin-bottom: 25px;
+            color: white;
+        }
+
+        .about-card p {
+            color: var(--text-gray);
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+
+        .highlight {
+            color: var(--neon-blue);
+            font-weight: 600;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            text-align: center;
+            padding: 60px 20px;
+            font-size: 0.75rem;
+            color: #444;
+            font-family: 'Orbitron', sans-serif;
+            letter-spacing: 1px;
+        }
+
+        /* Adaptación para Celulares */
+        @media (max-width: 768px) {
+            header { flex-direction: column; gap: 15px; padding: 20px; }
+            .hero h1 { font-size: 3rem; }
+            .social-group { border-right: none; margin-right: 0; padding-right: 0; }
+            .about-card { padding: 30px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">RAM<span>GER</span></div>
+        
+        <nav>
+            <div class="social-group">
+                <a href="https://discord.com/channels/1469783742762455114/1469783744163610699" class="social-link" target="_blank">DISCORD</a>
+                <a href="#" class="social-link">INSTAGRAM</a>
+                <a href="#" class="social-link">TIKTOK</a>
+            </div>
+
+            <a href="#acerca" class="nav-item">ACERCA</a>
+            <a href="#modulos" class="nav-item">MODULOS</a>
+            <a href="https://github.com/IsaacBorjas/Ramger" class="nav-item btn-github" target="_blank">GITHUB</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1>RAMGER</h1>
+        <p>Optimización Inteligente</p>
+    </section>
+
+    <div class="container" id="acerca">
+        <div class="about-card">
+            <h2>Mi Historia</h2>
+            <p>
+                Todo comenzó por una frustración común: ver cómo equipos con gran potencial se quedaban atrás debido a un sistema operativo sobrecargado. Decidí que <span class="highlight">el rendimiento no debería ser un lujo</span>, sino un estándar para todos.
+            </p>
+            <p>
+                Empecé a investigar y a entender cómo Windows gestiona los recursos a bajo nivel. Lo que nació como una solución personal para eliminar el lag y mejorar los FPS, pronto se convirtió en una misión: <span class="highlight">ayudar a más personas a revivir sus PCs</span> y a disfrutar de una experiencia fluida.
+            </p>
+            <p>
+                Hoy, <strong>RAMGER R.OS</strong> es el resultado de ese esfuerzo. Un proyecto hecho por un gamer, para la comunidad, con el objetivo de llevar la eficiencia al máximo nivel posible.
+            </p>
+        </div>
+    </div>
+
+    <footer>
+        &copy; 2026 RAMGER SOFTWARE SOLUTIONS | PROYECTO R.OS | HECHO PARA AYUDAR
+    </footer>
+
+</body>
+</html>
