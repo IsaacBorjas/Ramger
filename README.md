@@ -1,9 +1,7 @@
 # ⚡ Ramger Playbook
 ### Software Solutions | Tecnología hecha para el futuro
 
-![Ramger Logo](![Ramger OS](https://github.com/user-attachments/assets/22c689f6-eb37-44d1-a600-3b7f20e63f2e)
-)
-)
+(https://github.com/user-attachments/assets/940c1419-9374-49bb-8fb1-adc17b561927)
 
 **Ramger** es un Playbook de optimización diseñado para transformar sistemas Windows lentos en máquinas de alto rendimiento, enfocado especialmente en hardware antiguo (como Intel Core de 2da generación).
 
